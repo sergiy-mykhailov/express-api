@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "extends": "airbnb",
+  "env": {
+    "node": true,
+    "es6": true,
+    "commonjs": true,
+    "browser": true
+  },
+  "globals": {
+    "process": true,
+    "__dirname": true
+  },
+  "rules": {
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "linebreak-style": "off",
+    "arrow-body-style": "warn",
+    "object-curly-newline": "off",
+    "consistent-return": "warn",
+    "class-methods-use-this": [0],
+    "import/prefer-default-export": "off",
+    "no-else-return": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
+  }
+}

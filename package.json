@@ -1,0 +1,46 @@
+{
+  "name": "express-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "migrate-prod": "NODE_ENV=production node_modules/.bin/sequelize db:migrate",
+    "migrate": "node_modules/.bin/sequelize db:migrate",
+    "start-prod": "env-cmd pm2 start server/bin/server.js --name api --update-env",
+    "restart-prod": "env-cmd pm2 restart api --update-env",
+    "delete-prod": "pm2 stop api && pm2 delete api",
+    "start": "env-cmd nodemon server/bin/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "env-cmd": "^9.0.3",
+    "express": "~4.16.1",
+    "express-session": "^1.16.1",
+    "express-validator": "^6.2.0",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "nanoid": "^2.1.10",
+    "nodemon": "^1.19.2",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "pm2": "3.5.1",
+    "sequelize": "^5.19.0",
+    "swagger-ui-express": "^4.1.2",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "0.0.0-b53ea6ca0",
+    "sequelize-cli": "^5.5.1"
+  }
+}
