@@ -7,8 +7,7 @@ const swaggerDocument = YAML.load('./server/swagger.yaml');
 const getRoutes = () => {
   const router = Router();
 
-  router.use('/', swaggerUi.serve);
-  router.route('/').get(swaggerUi.setup(swaggerDocument));
+  router.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   return router;
 };

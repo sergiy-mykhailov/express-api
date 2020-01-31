@@ -19,7 +19,7 @@ const register = async (req, res, next) => {
 
     const passwordHash = await getPasswordHash(passwordRaw);
     if (!passwordHash) {
-      return next(createError(401, 'Password is incorrect or empty'));
+      return next(createError(400, 'Password is incorrect or empty'));
     }
 
     const newUser = {
@@ -58,7 +58,7 @@ const login = async (req, res, next) => {
 
     const { password, ...data } = affectedData.get();
 
-    res.status(200).send({ data });
+    res.status(200).send(data);
   } catch (err) {
     next(err);
   }

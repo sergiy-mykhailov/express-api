@@ -7,12 +7,14 @@ const { idValidator, paginationValidator } = require('../validators/base.validat
 const getRoutes = () => {
   const router = Router();
 
+  // TODO: add docs
   router.route('/').get(
     onlyRoles(roles.ADMIN),
     paginationValidator,
     getUserList,
   );
 
+  // TODO: add docs
   router.route('/:id').get(
     idValidator('id'),
     getUserDetails,

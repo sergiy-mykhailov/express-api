@@ -10,6 +10,7 @@
 * Rename `.env.exaple` to `.env`
 * Set the correct environments to `.env`
 * Run `npm start`
+* Open project docs: [http://localhost:8080/api/docs](http://localhost:8080/api/docs/)
 
 ## Working with migrations
 
