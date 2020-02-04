@@ -3,19 +3,29 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "migrate-test": "NODE_ENV=test node_modules/.bin/sequelize db:migrate",
+    "migrate-test-undo": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all",
+    "test": "env-cmd -f .env.test jest -i --verbose",
     "migrate-prod": "NODE_ENV=production node_modules/.bin/sequelize db:migrate",
-    "migrate": "node_modules/.bin/sequelize db:migrate",
     "start-prod": "env-cmd pm2 start server/bin/server.js --name api --update-env",
     "restart-prod": "env-cmd pm2 restart api --update-env",
     "delete-prod": "pm2 stop api && pm2 delete api",
+    "migrate": "node_modules/.bin/sequelize db:migrate",
     "start": "env-cmd nodemon server/bin/server.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFilesAfterEnv": ["jest-extended"]
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-    "env-cmd": "^9.0.3",
+    "env-cmd": "^10.0.1",
     "express": "~4.16.1",
     "express-session": "^1.16.1",
     "express-validator": "^6.2.0",
@@ -41,6 +51,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "0.0.0-b53ea6ca0",
-    "sequelize-cli": "^5.5.1"
+    "jest": "^25.1.0",
+    "jest-extended": "^0.11.5",
+    "sequelize-cli": "^5.5.1",
+    "supertest": "^4.0.2"
   }
 }

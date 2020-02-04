@@ -1,3 +1,4 @@
+const { exec } = require('child_process');
 
 const extractFields = (inputs, names) => {
   const fields = {};
@@ -14,6 +15,23 @@ const extractFields = (inputs, names) => {
   return fields;
 };
 
+const runCommand = async (command) => {
+  return new Promise((resolve, reject) => {
+    exec(
+      command,
+      { env: process.env },
+      (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      },
+    );
+  });
+};
+
 module.exports = {
   extractFields,
+  runCommand,
 };

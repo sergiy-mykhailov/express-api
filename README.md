@@ -12,6 +12,11 @@
 * Run `npm start`
 * Open project docs: [http://localhost:8080/api/docs](http://localhost:8080/api/docs/)
 
+## Run tests:
+* Create database: `NODE_ENV=test sequelize db:create`
+* Run tests: `npm test`
+
+
 ## Working with migrations
 
 ###### Generate new migration

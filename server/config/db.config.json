@@ -16,7 +16,7 @@
   "test": {
     "username": "postgres",
     "password": "postgres",
-    "database": "express-api",
+    "database": "express-api-test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

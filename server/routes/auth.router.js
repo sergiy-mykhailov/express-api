@@ -22,8 +22,8 @@ const getRoutes = (passport) => {
     login,
   );
 
-  // TODO: refresh token
-  // TODO: reset password
+  // TODO: add /refresh-token
+  // TODO: add /reset-password
 
   router.route('/logout').get(
     authJWT(passport),
