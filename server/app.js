@@ -19,7 +19,10 @@ app.use(cors);
 // redirect to https
 app.use(redirectMiddleware);
 
-app.use(logger(config.loggerFormat));
+if (config.env.nodeEnv !== 'test') {
+  app.use(logger(config.loggerFormat));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,8 +34,6 @@ jwtStrategy(passport);
 
 // API routes
 app.use('/api', router(passport));
-
-// TODO: tests
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

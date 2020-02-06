@@ -35,7 +35,14 @@ const payloadFieldsFilter = (fields, parent) => {
     } else {
       await body()
         .custom((values) => {
-          return (Object.keys(values).length > 0);
+          return !!values
+            && typeof values === 'object'
+            && !Array.isArray(values)
+            && !(values instanceof Date);
+        })
+        .withMessage('Must be an object')
+        .custom((values) => {
+          return Object.keys(values).length > 0;
         })
         .withMessage('Payload cannot be empty')
         .run(req);
@@ -46,6 +53,16 @@ const payloadFieldsFilter = (fields, parent) => {
         return extractFields(values, fields);
       })
       .run(req);
+
+    // payload may become empty after sanitizing - check again!
+    if (parent !== '*') {
+      await body()
+        .custom((values) => {
+          return Object.keys(values).length > 0;
+        })
+        .withMessage('Payload cannot be empty')
+        .run(req);
+    }
 
     const result = validationResult(req);
 

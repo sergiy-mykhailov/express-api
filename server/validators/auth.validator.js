@@ -7,7 +7,7 @@ const registerValidator = async (req, res, next) => {
   await body('username')
     .not().isEmpty().withMessage('Cannot be empty')
     .isString().withMessage('Must be a string')
-    .isLength({ min: 3 })
+    .isLength({ min: 3 }).withMessage('must be greater than 2')
     .trim()
     .run(req);
 
@@ -20,7 +20,7 @@ const registerValidator = async (req, res, next) => {
   await body('password')
     .not().isEmpty().withMessage('Cannot be empty')
     .isString().withMessage('Must be a string')
-    .isLength({ min: 3 })
+    .isLength({ min: 6 }).withMessage('must be greater than 5')
     .trim()
     .run(req);
 
@@ -36,12 +36,14 @@ const registerValidator = async (req, res, next) => {
   await body('firstName')
     .optional()
     .isString().withMessage('Must be a string')
+    .isLength({ min: 1 }).withMessage('must be at least 1 character')
     .trim()
     .run(req);
 
   await body('lastName')
     .optional()
     .isString().withMessage('Must be a string')
+    .isLength({ min: 1 }).withMessage('must be at least 1 character')
     .trim()
     .run(req);
 
@@ -77,6 +79,10 @@ const loginValidator = async (req, res, next) => {
 
   return next(getValidationErrors(result.array()));
 };
+
+// TODO: refreshTokenValidator
+// TODO: resetPasswordValidator
+// TODO: logoutValidator
 
 module.exports = {
   registerValidator,
