@@ -2,18 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const pg = require('pg');
 const Sequelize = require('sequelize');
-const { env } = require('../config/index');
+const { env, db } = require('../config/index');
 // eslint-disable-next-line import/no-dynamic-require,global-require
-const config = require(`${__dirname}/../config/db.config.json`);
+const config = require(`${__dirname}/../config/db.js`);
 
 pg.defaults.parseInt8 = true;
 const nodeEnv = env.nodeEnv || 'development';
-const dbUrl = env.databaseUrl;
+const dbUrl = db.url;
 const dbConfig = config[nodeEnv];
 let sequelize;
 
 if (dbUrl) {
-  sequelize = new Sequelize(dbUrl, { dialect: 'postgres' });
+  sequelize = new Sequelize(dbUrl, { dialect: 'postgres', logging: false });
 } else {
   sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
     ...dbConfig,

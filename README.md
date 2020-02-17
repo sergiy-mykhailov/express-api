@@ -4,7 +4,7 @@
 * Install PostgreSQL
 * Install dependencies: `npm install`
 * Create database specified by configuration: `sequelize db:create`
-* Run migrations
+* Run migrations `npm run migrate`
 
 ## Run the project (development):
 * Rename `.env.exaple` to `.env`
@@ -15,6 +15,18 @@
 ## Run tests:
 * Create database: `NODE_ENV=test sequelize db:create`
 * Run tests: `npm test`
+
+
+## Run the project in docker (dev)
+* Run with composer: `docker-compose up dev`
+* Connect to container: `docker exec -it container_name bash`
+* Create db: `node_modules/.bin/sequelize db:create --url 'postgres://postgres:postgres@database:5432/docker-express-api'`
+
+
+## Other docker commands
+* Build container `docker build -t express-api .`
+* Run container `docker run -it express-api`
+* Create volume `docker volume create --name=express-api-data`
 
 
 ## Working with migrations

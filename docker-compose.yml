@@ -1,0 +1,50 @@
+version: '3.6'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - database
+    depends_on:
+      - database
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/var/www/express-api
+      - /var/www/express-api/node_modules
+    environment:
+      NODE_ENV: development
+      JWT_SECRET_KEY: jwt-very-secret-key
+      JWT_TOKEN_EXPIRES_IN: '60m'
+      AUTH_SECRET_KEY: auth-very-secret-key
+      DATABASE_URL: postgres://postgres:postgres@database:5432/docker-express-api
+#      DB_USERNAME: postgres
+#      DB_PASSWORD: postgres
+#      DB_DATABASE: docker-express-api
+#      DB_HOST: database
+#      DB_DIALECT: postgres
+    stdin_open: true
+    tty: true
+  database:
+#    image: postgres:alpine
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    volumes:
+      - ./db:/var/lib/postgresql/data
+#      - express-api-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: docker-express-api
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      PGDATA: /var/lib/postgresql/data
+    stdin_open: true
+    tty: true
+
+#volumes:
+#  express-api-data:
+#    external: true
+
+# TODO: fix docker volume (set some directory on the host)
