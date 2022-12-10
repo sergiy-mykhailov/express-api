@@ -28,7 +28,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "env-cmd": "^10.0.1",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-session": "^1.16.1",
     "express-validator": "^6.2.0",
     "http-errors": "~1.6.3",
